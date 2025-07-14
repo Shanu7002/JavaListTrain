@@ -1,1 +1,1 @@
-# JavaListTrain
+Some small projects to train lists and/or OOP
