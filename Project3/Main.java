@@ -45,12 +45,18 @@ public class Main {
             for(int i = 0; i < newBook.size();){
                 if (newBook.get(i).getLoan() == true){
                     System.out.println(newBook.get(i));
-                    i++;
                 }
+                i++;
             }
             System.out.print("Which book do you want to loan? ");
             String loanBook = sc.nextLine();
             Integer loanBookInteger = findBookIndex(newBook, loanBook);
+            if (loanBookInteger != null) {
+                newBook.get(loanBookInteger).setLoan(false);
+                System.out.println("Book loaned successfully.");
+            } else {
+                System.out.println("Book not found.");
+            }
         }
 
 
