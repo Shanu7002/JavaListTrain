@@ -21,6 +21,7 @@ public class Main {
         String moreBooksString = sc.nextLine();
         boolean moreBooks;
         moreBooks = moreBooksVerify(moreBooksString);
+        // Loop to add books to the list
         while(moreBooks){
           System.out.print("Enter Book Name: ");
           String bookName = sc.nextLine();
@@ -34,7 +35,8 @@ public class Main {
             } else{
                 bookAvailable = false;
             }
-          newBook.add(new Book(bookName, bookAuthor, bookAvailable));
+            // Add the new book to the list
+            newBook.add(new Book(bookName, bookAuthor, bookAvailable));
           System.out.print("Do you want to add another book? (y/n) ");
           String addBook = sc.nextLine();
           if(addBook.equals("y")){
@@ -43,17 +45,13 @@ public class Main {
               moreBooks = false;
           }
         }
+        // Ask if the user wants to loan a book
         System.out.print("Do you want to loan a book? (y/n)");
         moreBooksString = sc.nextLine();
         moreBooks = moreBooksVerify(moreBooksString);
         while(moreBooks){
             System.out.println("This is the available books: ");
-            for(int i = 0; i < newBook.size();){
-                if (newBook.get(i).getLoan() == true){
-                    System.out.println(newBook.get(i));
-                }
-                i++;
-            }
+            printAvailableBooks(newBook);
             System.out.print("Which book do you want to loan? ");
             String loanBook = sc.nextLine();
             Integer loanBookInteger = findBookIndex(newBook, loanBook);
@@ -67,12 +65,7 @@ public class Main {
             moreBooksString = sc.nextLine();
             moreBooks = moreBooksVerify(moreBooksString);
             System.out.println("This is the available books: ");
-            for(int i = 0; i < newBook.size();){
-                if (newBook.get(i).getLoan() == true){
-                    System.out.println(newBook.get(i));
-                }
-                i++;
-            }
+            printAvailableBooks(newBook);
         }
 
         System.out.println("Thank you for everything, good read for you!");
@@ -81,6 +74,7 @@ public class Main {
 
         sc.close();
     }
+    // Helper method to check if the user answered 'yes'
     public static boolean moreBooksVerify(String moreBooksString){
         if(moreBooksString.equalsIgnoreCase("y")){
             return true;
@@ -88,6 +82,7 @@ public class Main {
             return false;
         }
     }
+    // Find a book in the list by its title (case-insensitive)
     public static Integer findBookIndex(List<Book> list, String loanBook){
         for(int i = 0;i < list.size();i++){
             if(list.get(i).getTitle().equalsIgnoreCase(loanBook)){
@@ -95,5 +90,15 @@ public class Main {
             }
         }
         return null;
+    }
+    // Print all books that are available for loan
+    public static void printAvailableBooks(List<Book> books){
+        System.out.println("Available Books: ");
+        for(Book book : books){
+            if (book.getLoan()){
+                System.out.println(book);
+                System.out.println("--------------");
+            }
+        }
     }
 }
