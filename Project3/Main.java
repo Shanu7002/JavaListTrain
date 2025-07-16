@@ -1,3 +1,9 @@
+/*
+ * Basic library system with a Book class.
+ * Each book has a title, author, and loan status.
+ * Includes methods to add, lend, return, and list available books.
+ * Useful for learning object behavior and boolean flags.
+ */
 package Project3;
 
 import java.util.ArrayList;
@@ -57,7 +63,19 @@ public class Main {
             } else {
                 System.out.println("Book not found.");
             }
+            System.out.print("Do you want to loan another book? (y/n)");
+            moreBooksString = sc.nextLine();
+            moreBooks = moreBooksVerify(moreBooksString);
+            System.out.println("This is the available books: ");
+            for(int i = 0; i < newBook.size();){
+                if (newBook.get(i).getLoan() == true){
+                    System.out.println(newBook.get(i));
+                }
+                i++;
+            }
         }
+
+        System.out.println("Thank you for everything, good read for you!");
 
 
 

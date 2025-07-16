@@ -1,3 +1,9 @@
+/*
+ * Basic library system with a Book class.
+ * Each book has a title, author, and loan status.
+ * Includes methods to add, lend, return, and list available books.
+ * Useful for learning object behavior and boolean flags.
+ */
 package Project3;
 
 public class Book {
