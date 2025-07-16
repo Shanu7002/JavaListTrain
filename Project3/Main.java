@@ -50,7 +50,7 @@ public class Main {
             }
             System.out.print("Which book do you want to loan? ");
             String loanBook = sc.nextLine();
-            Integer loanBookInteger = findBookIndex(list, loanBook);
+            Integer loanBookInteger = findBookIndex(newBook, loanBook);
         }
 
 
@@ -66,7 +66,7 @@ public class Main {
     }
     public static Integer findBookIndex(List<Book> list, String loanBook){
         for(int i = 0;i < list.size();i++){
-            if(list.get(i).equals(loanBook)){
+            if(list.get(i).getTitle().equalsIgnoreCase(loanBook)){
                 return i;
             }
         }
